@@ -127,12 +127,12 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
 
   // 纸张颜色展示与选项
   const papers: { id: PaperType; name: string; color: string; label: string }[] = [
-    { id: 'washi', name: '和纸 (Washi)', color: 'bg-[#FBFBFA] border-[#DEDCD8]', label: '白' },
-    { id: 'canvas', name: '消墨 (Ink)', color: 'bg-[#F4F5F6] border-[#DFE2E3]', label: '墨' },
-    { id: 'bamboo', name: '竹 (Bamboo)', color: 'bg-[#F3F5F0] border-[#D8DDD6]', label: '竹' },
-    { id: 'sakura', name: '落樱 (Sakura)', color: 'bg-[#FAF3F3] border-[#E8DCDD]', label: '樱' },
-    { id: 'wheat', name: '麦穗 (Wheat)', color: 'bg-[#FAF6F0] border-[#E8DFD5]', label: '麦' },
-    { id: 'minimal-dark', name: '墨黑 (Sumi)', color: 'bg-[#1C1C1D] border-[#333334]', label: '黑' },
+    { id: 'washi', name: '和纸', color: 'bg-[#FBFBFA] border-[#DEDCD8]', label: '白' },
+    { id: 'canvas', name: '消墨', color: 'bg-[#F4F5F6] border-[#DFE2E3]', label: '墨' },
+    { id: 'bamboo', name: '竹', color: 'bg-[#F3F5F0] border-[#D8DDD6]', label: '竹' },
+    { id: 'sakura', name: '落樱', color: 'bg-[#FAF3F3] border-[#E8DCDD]', label: '樱' },
+    { id: 'wheat', name: '麦穗', color: 'bg-[#FAF6F0] border-[#E8DFD5]', label: '麦' },
+    { id: 'minimal-dark', name: '墨黑', color: 'bg-[#1C1C1D] border-[#333334]', label: '黑' },
   ];
 
   const stamps: { id: StampType; label: string }[] = [
@@ -489,7 +489,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
             <div className="space-y-1.5">
               <div className="flex justify-between items-center">
                 <span className="text-[10px] uppercase tracking-widest text-stone-400">
-                  行距 (Line Height)
+                  行距
                 </span>
                 <span className="text-[10px] font-mono text-stone-500">{config.lineHeight}x</span>
               </div>
@@ -506,7 +506,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
 
             <div className="space-y-1.5 row-span-1">
               <span className="text-[10px] uppercase tracking-widest text-stone-400">
-                主内容字号 (Size)
+                主内容字号
               </span>
               <div className="grid grid-cols-3 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
                 {(['sm', 'base', 'lg'] as ('sm' | 'base' | 'lg')[]).map((sz) => (
@@ -520,7 +520,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                         : 'text-stone-500 hover:text-stone-800'
                     }`}
                   >
-                    {sz === 'sm' ? '小(sm)' : sz === 'base' ? '中' : '大(lg)'}
+                    {sz === 'sm' ? '小' : sz === 'base' ? '中' : '大'}
                   </button>
                 ))}
               </div>
@@ -530,7 +530,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
           {/* 7. 自定义 DPI 导出设置 */}
           <div className="border-t border-[#ECECEC] pt-4.5 space-y-2">
             <span className="text-[10px] uppercase tracking-widest text-[#7E7E7A] block font-medium">
-              自定义导出分辨率 (Custom DPI)
+              自定义导出分辨率
             </span>
             <div className="flex items-center space-x-2">
               <div className="relative flex-grow">

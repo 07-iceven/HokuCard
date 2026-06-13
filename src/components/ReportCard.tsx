@@ -209,7 +209,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
              }}>
           <div className="font-medium flex items-center space-x-1.5">
             <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: currentStyle.accent }} />
-            <span>{projectName || 'GENERAL REPORT'}</span>
+            <span>{projectName || '常规汇报'}</span>
           </div>
           <div className="font-mono">{date || '2026.06.13'}</div>
         </div>
