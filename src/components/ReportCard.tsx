@@ -244,6 +244,13 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
               {paragraphs.map((p, index) => {
                 // 检测是否像是一个列表项（比如以 - 或 * 或 序号. 或者是：1、 开头）
                 const isListItem = /^[-\*\•\d+前第]\s*|^[①②③④⑤]|^[A-Za-z]\./.test(p.trim());
+                
+                // 对于无序列表符号（-、*、•），在显示时将其移除，仅保留自定义的点
+                let displayText = p;
+                if (/^[-\*\•]\s*/.test(p.trim())) {
+                  displayText = p.trim().replace(/^[-\*\•]\s*/, '');
+                }
+
                 return (
                   <p 
                     key={index}
@@ -259,7 +266,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
                         ▪
                       </span>
                     )}
-                    {p}
+                    {displayText}
                   </p>
                 );
               })}
