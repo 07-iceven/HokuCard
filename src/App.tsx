@@ -11,7 +11,7 @@ const INITIAL_CONFIG: CardConfig = {
   projectName: '',
   reporter: '',
   date: '2026.06.13',
-  imageSrc: null,
+  images: [],
   paperType: 'washi',
   gridType: 'grid',
   fontType: 'sans',

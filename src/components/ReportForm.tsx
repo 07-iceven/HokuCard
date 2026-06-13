@@ -18,21 +18,27 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
   };
 
   // 处理图片文件上传
-  const handleImageFile = (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      alert('请选择图片文件。');
-      return;
+  const processImageFiles = async (fileList: FileList | File[]) => {
+    const files = Array.from(fileList).filter(f => f.type === 'image/jpeg' || f.type === 'image/png');
+    if (files.length !== fileList.length) {
+      alert('部分文件格式不支持，仅支持 JPG 和 PNG 格式，已过滤不支持的文件。');
     }
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      updateKey('imageSrc', e.target?.result as string);
-    };
-    reader.readAsDataURL(file);
+    if (files.length === 0) return;
+
+    const newImages = await Promise.all(files.map(file => {
+      return new Promise<string>((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => resolve(e.target?.result as string);
+        reader.readAsDataURL(file);
+      });
+    }));
+
+    updateKey('images', [...(config.images || []), ...newImages]);
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      handleImageFile(e.target.files[0]);
+    if (e.target.files && e.target.files.length > 0) {
+      processImageFiles(e.target.files);
     }
   };
 
@@ -43,14 +49,16 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
 
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
-    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
-      handleImageFile(e.dataTransfer.files[0]);
+    if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+      processImageFiles(e.dataTransfer.files);
     }
   };
 
   // 移出当前图片
-  const removeImage = () => {
-    updateKey('imageSrc', null);
+  const removeImage = (index: number) => {
+    const newImages = [...(config.images || [])];
+    newImages.splice(index, 1);
+    updateKey('images', newImages);
     if (fileInputRef.current) fileInputRef.current.value = '';
   };
 
@@ -110,7 +118,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
       projectName: '',
       reporter: '',
       date: formattedDate,
-      imageSrc: null,
+      images: [],
       paperType: 'washi',
       gridType: 'blank',
       fontType: 'sans',
@@ -263,49 +271,53 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
           <label className="block text-[11px] font-medium tracking-widest text-[#7E7E7A] uppercase">
             汇报插图 (选填)
           </label>
-          {config.imageSrc ? (
-            <div className="relative border border-[#E0E0DE] rounded p-2 flex items-center justify-between bg-white/40">
-              <div className="flex items-center space-x-2.5 overflow-hidden">
-                <img 
-                  src={config.imageSrc} 
-                  alt="Attachment preview" 
-                  className="w-8 h-8 rounded border object-cover shrink-0" 
-                  referrerPolicy="no-referrer"
-                />
-                <span className="text-[11px] text-stone-500 truncate font-sans">插图.png (已装载)</span>
-              </div>
-              <button
-                type="button"
-                onClick={removeImage}
-                className="p-1.5 text-stone-400 hover:text-stone-600 hover:bg-stone-100 rounded transition-colors active:scale-95"
-                title="移除图片"
-              >
-                <X className="w-4 h-4" />
-              </button>
-            </div>
-          ) : (
-            <div
-              onDragOver={handleDragOver}
-              onDrop={handleDrop}
-              onClick={() => fileInputRef.current?.click()}
-              className="border border-dashed border-[#CACAC7] hover:border-stone-400 rounded-md p-4 flex flex-col items-center justify-center space-y-1.5 bg-white/40 cursor-pointer hover:bg-[#FDFDFD]/90 transition-all group"
-            >
-              <Upload className="w-5.5 h-5.5 text-stone-400 group-hover:text-stone-600 transition-colors" />
-              <div className="text-[11px] text-stone-500 tracking-wide text-center">
-                点击或拖拽手机/电脑本地图片至此
-              </div>
-              <div className="text-[9px] text-stone-400 font-mono uppercase">
-                JPG, PNG, GIF
-              </div>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="hidden"
-              />
+          {config.images && config.images.length > 0 && (
+            <div className="grid grid-cols-2 gap-2 mb-2">
+              {config.images.map((img, index) => (
+                <div key={index} className="relative border border-[#E0E0DE] rounded p-2 flex items-center justify-between bg-white/40">
+                  <div className="flex items-center space-x-2.5 overflow-hidden">
+                    <img 
+                      src={img} 
+                      alt={`Attachment preview ${index + 1}`} 
+                      className="w-8 h-8 rounded border object-cover shrink-0" 
+                      referrerPolicy="no-referrer"
+                    />
+                    <span className="text-[11px] text-stone-500 truncate font-sans">插图 {index + 1}</span>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => removeImage(index)}
+                    className="p-1.5 text-stone-400 hover:text-stone-600 hover:bg-stone-100 rounded transition-colors active:scale-95"
+                    title="移除图片"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              ))}
             </div>
           )}
+          <div
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+            onClick={() => fileInputRef.current?.click()}
+            className="border border-dashed border-[#CACAC7] hover:border-stone-400 rounded-md p-4 flex flex-col items-center justify-center space-y-1.5 bg-white/40 cursor-pointer hover:bg-[#FDFDFD]/90 transition-all group"
+          >
+            <Upload className="w-5.5 h-5.5 text-stone-400 group-hover:text-stone-600 transition-colors" />
+            <div className="text-[11px] text-stone-500 tracking-wide text-center">
+              点击或拖拽手机/电脑本地图片至此
+            </div>
+            <div className="text-[9px] text-stone-400 font-mono uppercase">
+              JPG, PNG (支持多选)
+            </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/jpeg, image/png"
+              multiple
+              onChange={handleFileChange}
+              className="hidden"
+            />
+          </div>
         </div>
 
         {/* 汇报人及签名 */}

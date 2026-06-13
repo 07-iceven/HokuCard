@@ -15,7 +15,7 @@ export interface CardConfig {
   projectName: string;
   reporter: string;
   date: string;
-  imageSrc: string | null;
+  images: string[];
   paperType: PaperType;
   gridType: GridType;
   fontType: FontType;

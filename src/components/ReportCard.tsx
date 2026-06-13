@@ -14,7 +14,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
     projectName,
     reporter,
     date,
-    imageSrc,
+    images,
     paperType,
     gridType,
     fontType,
@@ -272,25 +272,28 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
           )}
 
           {/* 本地预览图片：如果有上传图片，则优雅呈现 */}
-          {imageSrc && (
-            <div id="image-container" className="mt-6 w-full flex justify-center">
-              <div 
-                className="overflow-hidden border w-full transition-all duration-300"
-                style={{ 
-                  borderColor: currentStyle.border,
-                  borderRadius: '3px',
-                  backgroundColor: paperType === 'minimal-dark' ? '#252526' : '#F0EFEA',
-                  padding: '4.5px'
-                }}
-              >
-                <img
-                  id="preview-image"
-                  src={imageSrc}
-                  alt="Attachment Preview"
-                  className="w-full h-auto block grayscale-20 contrast-[1.02]"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
+          {images && images.length > 0 && (
+            <div id="image-container" className="mt-6 w-full flex flex-col space-y-4">
+              {images.map((img, index) => (
+                <div 
+                  key={index}
+                  className="overflow-hidden border w-full transition-all duration-300"
+                  style={{ 
+                    borderColor: currentStyle.border,
+                    borderRadius: '3px',
+                    backgroundColor: paperType === 'minimal-dark' ? '#252526' : '#F0EFEA',
+                    padding: '4.5px'
+                  }}
+                >
+                  <img
+                    id={`preview-image-${index}`}
+                    src={img}
+                    alt={`Attachment Preview ${index + 1}`}
+                    className="w-full h-auto block grayscale-20 contrast-[1.02]"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+              ))}
             </div>
           )}
         </div>
