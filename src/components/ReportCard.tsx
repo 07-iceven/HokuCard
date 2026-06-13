@@ -221,7 +221,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
         {/* 标题 & 副标题区 */}
         <div className={`mt-8 mb-6 ${alignment === 'center' ? 'text-center' : 'text-left'}`}>
           <h1 className="text-xl md:text-2xl font-semibold tracking-wide" style={{ lineHeight: 1.3 }}>
-            {title || '无标题报告书'}
+            {title || '无题'}
           </h1>
           {subtitle && (
             <p className="text-xs mt-2.5 font-normal tracking-wider opacity-75" style={{ color: currentStyle.subText }}>

@@ -219,12 +219,11 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
         {/* 汇报标题 */}
         <div className="space-y-1.5">
           <label className="block text-[11px] font-medium tracking-widest text-[#7E7E7A] uppercase flex items-center justify-between">
-            <span>汇报标题 <span className="text-red-500">*</span></span>
+            <span>汇报标题</span>
             <span className="text-[10px] text-stone-400 font-mono">{config.title.length}/30</span>
           </label>
           <input
             type="text"
-            required
             maxLength={30}
             value={config.title}
             onChange={(e) => updateKey('title', e.target.value)}
@@ -590,10 +589,10 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
           
           <button
             type="button"
-            disabled={isDownloading || !config.title}
+            disabled={isDownloading}
             onClick={onDownload}
             className={`flex-grow flex items-center justify-center space-x-2.5 px-6 py-2.5 rounded text-xs font-semibold tracking-widest uppercase transition-all ${
-              config.title
+              !isDownloading
                 ? 'bg-[#2E2E2E] hover:bg-black text-white cursor-pointer active:scale-[0.98]'
                 : 'bg-stone-200 text-stone-400 cursor-not-allowed'
             }`}
