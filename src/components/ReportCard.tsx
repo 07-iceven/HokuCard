@@ -215,7 +215,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
           ) : (
             <div />
           )}
-          <div className="font-mono">{date || '2026.06.13'}</div>
+          <div className="font-mono">{date}</div>
         </div>
 
         {/* 标题 & 副标题区 */}
