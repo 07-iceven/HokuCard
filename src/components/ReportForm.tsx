@@ -157,21 +157,21 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
               onClick={() => loadPreset('weekly')}
               className="px-2 py-2 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] hover:border-stone-300 active:scale-[0.98] transition-all rounded text-center truncate font-serif shadow-sm"
             >
-              周报（竹纸风）
+             竹纸风
             </button>
             <button
               type="button"
               onClick={() => loadPreset('daily')}
               className="px-2 py-2 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] hover:border-stone-300 active:scale-[0.98] transition-all rounded text-center truncate font-mono shadow-sm"
             >
-              日报（和纸风）
+              和纸风
             </button>
             <button
               type="button"
               onClick={() => loadPreset('creative')}
               className="px-2 py-2 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] hover:border-stone-300 active:scale-[0.98] transition-all rounded text-center truncate shadow-sm"
             >
-              随笔（麦金风）
+              麦金风
             </button>
           </div>
         </div>
