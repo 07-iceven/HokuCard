@@ -70,7 +70,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
         gridType: 'grid',
         fontType: 'serif',
         alignment: 'left',
-        stamp: 'seen',
+        stamp: 'none',
         lineHeight: 1.6,
         fontSize: 'lg'
       });
@@ -81,7 +81,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
         gridType: 'grid',
         fontType: 'sans',
         alignment: 'left',
-        stamp: 'confirm',
+        stamp: 'none',
         lineHeight: 1.6,
         fontSize: 'lg'
       });
@@ -92,7 +92,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
         gridType: 'blank',
         fontType: 'serif',
         alignment: 'center',
-        stamp: 'checked',
+        stamp: 'none',
         lineHeight: 1.6,
         fontSize: 'lg'
       });
