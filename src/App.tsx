@@ -17,9 +17,8 @@ const INITIAL_CONFIG: CardConfig = {
   fontType: 'sans',
   alignment: 'left',
   stamp: 'none',
-  showBorder: true,
-  lineHeight: 1.7,
-  fontSize: 'base',
+  lineHeight: 1.6,
+  fontSize: 'lg',
   exportDpi: 300
 };
 

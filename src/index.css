@@ -14,13 +14,14 @@
     linear-gradient(rgba(175, 160, 145, 0.08) 1px, transparent 1px),
     linear-gradient(90deg, rgba(175, 160, 145, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
+  background-position: 0 0;
 }
 
-/* 极简横线日记本样式 - Ruled Paper Style */
-.japanese-ruled {
-  background-image: linear-gradient(rgba(175, 160, 145, 0.12) 1px, transparent 1px);
-  background-size: 100% 28px;
-  background-attachment: local;
+/* 点阵底纹样式 - Dotted Paper Style */
+.japanese-dotted {
+  background-image: radial-gradient(rgba(175, 160, 145, 0.2) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+  background-position: -12px -12px;
 }
 
 /* 精美日系印章边缘斑驳与噪点感 */

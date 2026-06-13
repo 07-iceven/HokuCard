@@ -20,7 +20,6 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
     fontType,
     alignment,
     stamp,
-    showBorder,
     lineHeight,
     fontSize,
   } = config;
@@ -77,7 +76,6 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
   const fontClass = {
     sans: 'font-sans tracking-wide',
     serif: 'font-serif tracking-widest leading-relaxed',
-    mono: 'font-mono tracking-normal',
   }[fontType];
 
   // 字号大小
@@ -90,7 +88,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
   // 获取网格背景类
   const getGridClass = () => {
     if (gridType === 'grid') return 'japanese-grid';
-    if (gridType === 'ruled') return 'japanese-ruled';
+    if (gridType === 'dotted') return 'japanese-dotted';
     return '';
   };
 
@@ -188,7 +186,7 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
       style={{
         backgroundColor: currentStyle.bg,
         color: currentStyle.text,
-        border: showBorder ? `1px solid ${currentStyle.border}` : 'none',
+        border: 'none',
         borderRadius: '4px',
         // 留白(Ma)的极致体现，卡片内部宽裕
         padding: '2.5rem 2.25rem 2.25rem 2.25rem',

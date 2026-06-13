@@ -1,8 +1,8 @@
 export type PaperType = 'washi' | 'canvas' | 'bamboo' | 'sakura' | 'wheat' | 'minimal-dark';
 
-export type GridType = 'blank' | 'grid' | 'ruled';
+export type GridType = 'blank' | 'grid' | 'dotted';
 
-export type FontType = 'sans' | 'serif' | 'mono';
+export type FontType = 'sans' | 'serif';
 
 export type AlignmentType = 'left' | 'center';
 
@@ -21,7 +21,6 @@ export interface CardConfig {
   fontType: FontType;
   alignment: AlignmentType;
   stamp: StampType;
-  showBorder: boolean;
   lineHeight: number; // 1.6 to 2.0
   fontSize: 'sm' | 'base' | 'lg';
   exportDpi?: number; // Custom output resolution DPI (e.g. 72, 150, 300, 600)

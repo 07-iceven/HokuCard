@@ -71,21 +71,19 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
         fontType: 'serif',
         alignment: 'left',
         stamp: 'seen',
-        showBorder: true,
-        lineHeight: 1.8,
-        fontSize: 'base'
+        lineHeight: 1.6,
+        fontSize: 'lg'
       });
     } else if (type === 'daily') {
       onChange({
         ...config,
         paperType: 'washi',
-        gridType: 'ruled',
-        fontType: 'mono',
+        gridType: 'grid',
+        fontType: 'sans',
         alignment: 'left',
         stamp: 'confirm',
-        showBorder: true,
-        lineHeight: 1.7,
-        fontSize: 'sm'
+        lineHeight: 1.6,
+        fontSize: 'lg'
       });
     } else {
       onChange({
@@ -95,8 +93,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
         fontType: 'serif',
         alignment: 'center',
         stamp: 'checked',
-        showBorder: false,
-        lineHeight: 1.9,
+        lineHeight: 1.6,
         fontSize: 'lg'
       });
     }
@@ -119,9 +116,8 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
       fontType: 'sans',
       alignment: 'left',
       stamp: 'none',
-      showBorder: true,
-      lineHeight: 1.7,
-      fontSize: 'base',
+      lineHeight: 1.6,
+      fontSize: 'lg',
       exportDpi: 300
     });
     if (fileInputRef.current) fileInputRef.current.value = '';
@@ -388,7 +384,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                 底纹网格
               </span>
               <div className="grid grid-cols-3 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
-                {(['blank', 'grid', 'ruled'] as GridType[]).map((gt) => (
+                {(['blank', 'grid', 'dotted'] as GridType[]).map((gt) => (
                   <button
                     key={gt}
                     type="button"
@@ -399,7 +395,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                         : 'text-stone-500 hover:text-stone-800'
                     }`}
                   >
-                    {gt === 'blank' ? '空白' : gt === 'grid' ? '方格' : '横线'}
+                    {gt === 'blank' ? '空白' : gt === 'grid' ? '方格' : '点阵'}
                   </button>
                 ))}
               </div>
@@ -410,8 +406,8 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
               <span className="text-[10px] uppercase tracking-widest text-stone-400">
                 字体字形
               </span>
-              <div className="grid grid-cols-3 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
-                {(['sans', 'serif', 'mono'] as FontType[]).map((ft) => (
+              <div className="grid grid-cols-2 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
+                {(['sans', 'serif'] as FontType[]).map((ft) => (
                   <button
                     key={ft}
                     type="button"
@@ -422,14 +418,14 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                         : 'text-stone-500 hover:text-stone-800'
                     }`}
                   >
-                    {ft === 'sans' ? '无衬' : ft === 'serif' ? '宋体' : '等宽'}
+                    {ft === 'sans' ? '无衬' : '宋体'}
                   </button>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 gap-4">
             {/* 4. 对齐方式 */}
             <div className="space-y-1.5">
               <span className="text-[10px] uppercase tracking-widest text-stone-400">
@@ -452,83 +448,9 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                 ))}
               </div>
             </div>
-
-            {/* 5. 极细卡片外框 */}
-            <div className="space-y-1.5">
-              <span className="text-[10px] uppercase tracking-widest text-stone-400">
-                极窄外部描边
-              </span>
-              <div className="grid grid-cols-2 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
-                <button
-                  type="button"
-                  onClick={() => updateKey('showBorder', true)}
-                  className={`py-1 text-[10px] tracking-wide rounded capitalize transition-all ${
-                    config.showBorder
-                      ? 'bg-white text-stone-800 border border-[#E0E0DE] font-medium shadow-sm'
-                      : 'text-stone-500 hover:text-stone-800'
-                  }`}
-                >
-                  显示 (1px)
-                </button>
-                <button
-                  type="button"
-                  onClick={() => updateKey('showBorder', false)}
-                  className={`py-1 text-[10px] tracking-wide rounded capitalize transition-all ${
-                    !config.showBorder
-                      ? 'bg-white text-stone-800 border border-[#E0E0DE] font-medium shadow-sm'
-                      : 'text-stone-500 hover:text-stone-800'
-                  }`}
-                >
-                  无界
-                </button>
-              </div>
-            </div>
           </div>
 
-          {/* 6. 行距与字号 */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-1.5">
-              <div className="flex justify-between items-center">
-                <span className="text-[10px] uppercase tracking-widest text-stone-400">
-                  行距
-                </span>
-                <span className="text-[10px] font-mono text-stone-500">{config.lineHeight}x</span>
-              </div>
-              <input
-                type="range"
-                min="1.6"
-                max="2.0"
-                step="0.1"
-                value={config.lineHeight}
-                onChange={(e) => updateKey('lineHeight', parseFloat(e.target.value))}
-                className="w-full accent-stone-500 h-1 bg-stone-200 rounded-lg appearance-none cursor-pointer"
-              />
-            </div>
-
-            <div className="space-y-1.5 row-span-1">
-              <span className="text-[10px] uppercase tracking-widest text-stone-400">
-                主内容字号
-              </span>
-              <div className="grid grid-cols-3 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
-                {(['sm', 'base', 'lg'] as ('sm' | 'base' | 'lg')[]).map((sz) => (
-                  <button
-                    key={sz}
-                    type="button"
-                    onClick={() => updateKey('fontSize', sz)}
-                    className={`py-1 text-[10px] tracking-wide rounded uppercase transition-all ${
-                      config.fontSize === sz
-                        ? 'bg-white text-stone-800 border border-[#E0E0DE] font-medium shadow-sm'
-                        : 'text-stone-500 hover:text-stone-800'
-                    }`}
-                  >
-                    {sz === 'sm' ? '小' : sz === 'base' ? '中' : '大'}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* 7. 自定义 DPI 导出设置 */}
+          {/* 6. 自定义 DPI 导出设置 */}
           <div className="border-t border-[#ECECEC] pt-4.5 space-y-2">
             <span className="text-[10px] uppercase tracking-widest text-[#7E7E7A] block font-medium">
               自定义导出分辨率
@@ -599,7 +521,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                 : 'bg-stone-200 text-stone-400 cursor-not-allowed'
             }`}
           >
-            <span>{isDownloading ? '卡片高清晰画质刻画中...' : '一键下载汇报卡片 (PNG)'}</span>
+            <span>{isDownloading ? '卡片高清晰画质刻画中...' : '一键导出 (PNG)'}</span>
           </button>
         </div>
 
