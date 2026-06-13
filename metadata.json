@@ -1,0 +1,6 @@
+{
+  "name": "HokuCard",
+  "description": "素报 · HokuCard是一款极简风格的汇报生成器。无需设计基础，输入标题与图文，即可自动排版并一键导出高清汇报图片",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
