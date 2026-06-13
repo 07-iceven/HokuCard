@@ -118,12 +118,8 @@ export default function App() {
         </div>
 
         {/* 右侧展示板块：灰色背景，中间完美居中卡片 (62% lg) */}
-        <div className="w-full lg:flex-grow bg-[#EFEFED] p-4 sm:p-8 flex items-center justify-center lg:overflow-hidden relative min-h-[400px] lg:min-h-0 shrink-0">
-          
-
-
-          <div className="w-full flex flex-col items-center py-4">
-            {/* 卡片容器：在此增加稍微精致的大阴影将它与预览舞台区隔。但卡片内部依然保持扁平 */}
+        <div className="flex-1 w-full lg:w-auto bg-[#EFEFED] lg:overflow-y-auto relative min-h-[400px] lg:min-h-0">
+          <div className="min-h-full w-full flex items-center justify-center p-4 sm:p-8">
             <div className="w-full max-w-xl shadow-[0_3px_24px_rgba(30,30,30,0.06)] rounded-[4px] relative bg-transparent overflow-hidden transition-all duration-300">
               <ReportCard 
                 config={config} 
@@ -131,7 +127,6 @@ export default function App() {
               />
             </div>
           </div>
-
         </div>
 
       </main>

@@ -207,10 +207,14 @@ export const ReportCard: React.FC<ReportCardProps> = ({ config, cardRef }) => {
                color: currentStyle.subText,
                borderBottom: `1px solid ${paperType === 'minimal-dark' ? '#333334' : 'rgba(175, 160, 145, 0.18)'}`
              }}>
-          <div className="font-medium flex items-center space-x-1.5">
-            <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: currentStyle.accent }} />
-            <span>{projectName || '常规汇报'}</span>
-          </div>
+          {projectName ? (
+            <div className="font-medium flex items-center space-x-1.5">
+              <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: currentStyle.accent }} />
+              <span>{projectName}</span>
+            </div>
+          ) : (
+            <div />
+          )}
           <div className="font-mono">{date || '2026.06.13'}</div>
         </div>
 

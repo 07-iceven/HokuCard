@@ -545,6 +545,9 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                   <option value={300}>300 DPI (高清印刷 / 默认高质量)</option>
                   <option value={450}>450 DPI (超高清 / 纤毫毕现)</option>
                   <option value={600}>600 DPI (极致印刷级 / 4K幅面)</option>
+                  {![72, 150, 200, 300, 450, 600].includes(config.exportDpi || 300) && (
+                    <option value={config.exportDpi}>{config.exportDpi} DPI (自定义)</option>
+                  )}
                 </select>
                 <div className="absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none text-stone-400 text-[9px]">
                   ▼
@@ -554,13 +557,11 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
               <div className="w-24 shrink-0 flex items-center border border-[#E0E0DE] bg-white rounded overflow-hidden">
                 <input
                   type="number"
-                  min="50"
-                  max="1200"
                   value={config.exportDpi || 300}
                   onChange={(e) => {
                     const val = parseInt(e.target.value);
                     if (!isNaN(val)) {
-                      updateKey('exportDpi', Math.max(50, Math.min(1200, val)));
+                      updateKey('exportDpi', val);
                     }
                   }}
                   className="w-full px-1.5 py-2 text-xs font-mono text-center text-stone-700 outline-none"

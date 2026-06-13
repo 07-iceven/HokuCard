@@ -13,6 +13,9 @@ dist
 dist-ssr
 *.local
 
+# Testing
+/coverage
+
 # Environment variables
 .env
 .env.local
@@ -25,7 +28,6 @@ dist-ssr
 !.vscode/extensions.json
 !.vscode/settings.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
@@ -37,3 +39,7 @@ dist-ssr
 
 # Eslint
 .eslintcache
+
+# OS Files
+.DS_Store
+Thumbs.db
