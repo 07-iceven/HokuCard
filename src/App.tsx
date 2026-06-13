@@ -107,7 +107,7 @@ export default function App() {
       <main className="flex-grow flex flex-col lg:flex-row min-h-0 overflow-y-auto lg:overflow-hidden">
         
         {/* 左侧控制板块：占1/3 宽度 (35% lg) */}
-        <div className="w-full lg:w-[38%] border-b lg:border-b-0 lg:border-r border-[#E3E3E0] bg-[#FCFCFB] p-6 lg:overflow-y-auto no-scrollbar shrink-0 flex flex-col">
+        <div className="w-full lg:w-[38%] border-b lg:border-b-0 lg:border-r border-[#E3E3E0] bg-[#FCFCFB] lg:overflow-y-auto no-scrollbar shrink-0 flex flex-col relative">
           <ReportForm
             config={config}
             onChange={setConfig}

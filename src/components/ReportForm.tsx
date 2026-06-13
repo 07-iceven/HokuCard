@@ -143,40 +143,39 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
   ];
 
   return (
-    <div className="w-full flex flex-col space-y-6">
-      
-      {/* 预设推荐栏 */}
-      <div className="bg-white/50 border border-[#E9E9E7] rounded-md p-4 flex flex-col space-y-2.5">
-        <label className="text-[11px] font-medium tracking-wider text-stone-400 uppercase flex items-center space-x-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-stone-500" />
-          <span>美学模板推荐</span>
-        </label>
-        <div className="grid grid-cols-3 gap-2">
-          <button
-            type="button"
-            onClick={() => loadPreset('weekly')}
-            className="px-2 py-1.5 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] active:scale-[0.98] transition-all rounded text-center truncate font-serif"
-          >
-            周报（竹纸风）
-          </button>
-          <button
-            type="button"
-            onClick={() => loadPreset('daily')}
-            className="px-2 py-1.5 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] active:scale-[0.98] transition-all rounded text-center truncate font-mono"
-          >
-            日报（和纸风）
-          </button>
-          <button
-            type="button"
-            onClick={() => loadPreset('creative')}
-            className="px-2 py-1.5 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] active:scale-[0.98] transition-all rounded text-center truncate"
-          >
-            随笔（麦金风）
-          </button>
+    <div className="w-full flex flex-col h-full">
+      <div className="flex-1 p-6 space-y-6">
+        {/* 预设推荐栏 */}
+        <div className="bg-white/50 border border-[#E9E9E7] rounded-md p-4 flex flex-col space-y-2.5">
+          <label className="text-[11px] font-medium tracking-wider text-stone-400 uppercase flex items-center space-x-1.5">
+            <Sparkles className="w-3.5 h-3.5 text-stone-500" />
+            <span>美学模板推荐</span>
+          </label>
+          <div className="grid grid-cols-3 gap-2">
+            <button
+              type="button"
+              onClick={() => loadPreset('weekly')}
+              className="px-2 py-2 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] hover:border-stone-300 active:scale-[0.98] transition-all rounded text-center truncate font-serif shadow-sm"
+            >
+              周报（竹纸风）
+            </button>
+            <button
+              type="button"
+              onClick={() => loadPreset('daily')}
+              className="px-2 py-2 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] hover:border-stone-300 active:scale-[0.98] transition-all rounded text-center truncate font-mono shadow-sm"
+            >
+              日报（和纸风）
+            </button>
+            <button
+              type="button"
+              onClick={() => loadPreset('creative')}
+              className="px-2 py-2 text-xs text-stone-600 bg-white border border-[#E0E0DE] hover:bg-[#F9F9F7] hover:border-stone-300 active:scale-[0.98] transition-all rounded text-center truncate shadow-sm"
+            >
+              随笔（麦金风）
+            </button>
+          </div>
         </div>
-      </div>
-
-      <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
         
         {/* 项目主题 & 日期 */}
         <div className="grid grid-cols-2 gap-4">
@@ -197,7 +196,7 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
               <button 
                 type="button" 
                 onClick={setToToday}
-                className="text-[9px] text-[#A18A73] hover:underline"
+                className="text-[10px] px-2 py-0.5 rounded bg-stone-100 text-[#A18A73] hover:bg-stone-200 transition-colors active:scale-95"
               >
                 今日
               </button>
@@ -278,10 +277,10 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
               <button
                 type="button"
                 onClick={removeImage}
-                className="p-1 text-stone-400 hover:text-stone-600 transition-colors"
+                className="p-1.5 text-stone-400 hover:text-stone-600 hover:bg-stone-100 rounded transition-colors active:scale-95"
                 title="移除图片"
               >
-                <X className="w-3.5 h-3.5" />
+                <X className="w-4 h-4" />
               </button>
             </div>
           ) : (
@@ -327,16 +326,16 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
           <label className="block text-[11px] font-medium tracking-widest text-[#7E7E7A] uppercase">
             手书朱砂签章
           </label>
-          <div className="grid grid-cols-3 sm:grid-cols-6 gap-1.5">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-2">
             {stamps.map((st) => (
               <button
                 key={st.id}
                 type="button"
                 onClick={() => updateKey('stamp', st.id)}
-                className={`py-1.5 text-xs rounded transition-all flex items-center justify-center border ${
+                className={`py-2 text-xs rounded transition-all flex items-center justify-center border hover:shadow-sm ${
                   config.stamp === st.id
-                    ? 'border-[#C84B31] text-[#C84B31] bg-[#FDF5F4] font-medium'
-                    : 'border-[#E0E0DE] text-stone-500 hover:bg-stone-50'
+                    ? 'border-[#C84B31] text-[#C84B31] bg-[#FDF5F4] font-medium shadow-sm ring-1 ring-[#C84B31]/20'
+                    : 'border-[#E0E0DE] text-stone-500 hover:bg-white hover:border-stone-300'
                 }`}
               >
                 {st.label}
@@ -363,13 +362,13 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
                   type="button"
                   onClick={() => updateKey('paperType', p.id)}
                   title={p.name}
-                  className={`h-8 rounded relative border flex items-center justify-center transition-all ${p.color} ${
+                  className={`h-10 rounded relative border flex items-center justify-center transition-all shadow-sm ${p.color} ${
                     config.paperType === p.id 
-                      ? 'ring-2 ring-stone-400 ring-offset-1 scale-[1.05]' 
-                      : 'hover:scale-[1.02]'
+                      ? 'ring-2 ring-stone-400 ring-offset-1 scale-[1.05] z-10' 
+                      : 'hover:scale-[1.02] hover:shadow-md'
                   }`}
                 >
-                  <span className={`text-[10px] ${p.id === 'minimal-dark' ? 'text-stone-300' : 'text-stone-700'}`}>
+                  <span className={`text-xs font-medium ${p.id === 'minimal-dark' ? 'text-stone-300' : 'text-stone-700'}`}>
                     {p.label}
                   </span>
                 </button>
@@ -378,24 +377,24 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            {/* 2. 底纹选择 */}
+            {/* 2. 对齐方式 */}
             <div className="space-y-1.5">
               <span className="text-[10px] uppercase tracking-widest text-stone-400">
-                底纹网格
+                排列对齐
               </span>
-              <div className="grid grid-cols-3 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
-                {(['blank', 'grid', 'dotted'] as GridType[]).map((gt) => (
+              <div className="grid grid-cols-2 gap-1 bg-[#F5F5F3] p-1 rounded border border-[#E0E0DE]">
+                {(['left', 'center'] as AlignmentType[]).map((al) => (
                   <button
-                    key={gt}
+                    key={al}
                     type="button"
-                    onClick={() => updateKey('gridType', gt)}
-                    className={`py-1 text-[10px] tracking-wide rounded capitalize transition-all ${
-                      config.gridType === gt
+                    onClick={() => updateKey('alignment', al)}
+                    className={`py-1.5 text-xs tracking-wide rounded capitalize transition-all ${
+                      config.alignment === al
                         ? 'bg-white text-stone-800 border border-[#E0E0DE] font-medium shadow-sm'
-                        : 'text-stone-500 hover:text-stone-800'
+                        : 'text-stone-500 hover:text-stone-800 hover:bg-[#EAEAEA]'
                     }`}
                   >
-                    {gt === 'blank' ? '空白' : gt === 'grid' ? '方格' : '点阵'}
+                    {al === 'left' ? '左对齐' : '居中'}
                   </button>
                 ))}
               </div>
@@ -406,16 +405,16 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
               <span className="text-[10px] uppercase tracking-widest text-stone-400">
                 字体字形
               </span>
-              <div className="grid grid-cols-2 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
+              <div className="grid grid-cols-2 gap-1 bg-[#F5F5F3] p-1 rounded border border-[#E0E0DE]">
                 {(['sans', 'serif'] as FontType[]).map((ft) => (
                   <button
                     key={ft}
                     type="button"
                     onClick={() => updateKey('fontType', ft)}
-                    className={`py-1 text-[10px] tracking-wide rounded capitalize transition-all ${
+                    className={`py-1.5 text-xs tracking-wide rounded capitalize transition-all ${
                       config.fontType === ft
                         ? 'bg-white text-stone-800 border border-[#E0E0DE] font-medium shadow-sm'
-                        : 'text-stone-500 hover:text-stone-800'
+                        : 'text-stone-500 hover:text-stone-800 hover:bg-[#EAEAEA]'
                     }`}
                   >
                     {ft === 'sans' ? '无衬' : '宋体'}
@@ -426,24 +425,24 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
           </div>
 
           <div className="grid grid-cols-1 gap-4">
-            {/* 4. 对齐方式 */}
+            {/* 4. 底纹选择 */}
             <div className="space-y-1.5">
               <span className="text-[10px] uppercase tracking-widest text-stone-400">
-                排列对齐
+                底纹网格
               </span>
-              <div className="grid grid-cols-2 gap-1 bg-[#F5F5F3] p-0.5 rounded border border-[#E0E0DE]">
-                {(['left', 'center'] as AlignmentType[]).map((al) => (
+              <div className="grid grid-cols-3 gap-1 bg-[#F5F5F3] p-1 rounded border border-[#E0E0DE]">
+                {(['blank', 'grid', 'dotted'] as GridType[]).map((gt) => (
                   <button
-                    key={al}
+                    key={gt}
                     type="button"
-                    onClick={() => updateKey('alignment', al)}
-                    className={`py-1 text-[10px] tracking-wide rounded capitalize transition-all ${
-                      config.alignment === al
+                    onClick={() => updateKey('gridType', gt)}
+                    className={`py-1.5 text-xs tracking-wide rounded capitalize transition-all ${
+                      config.gridType === gt
                         ? 'bg-white text-stone-800 border border-[#E0E0DE] font-medium shadow-sm'
-                        : 'text-stone-500 hover:text-stone-800'
+                        : 'text-stone-500 hover:text-stone-800 hover:bg-[#EAEAEA]'
                     }`}
                   >
-                    {al === 'left' ? '左对齐' : '居中'}
+                    {gt === 'blank' ? '空白' : gt === 'grid' ? '方格' : '点阵'}
                   </button>
                 ))}
               </div>
@@ -496,36 +495,33 @@ export const ReportForm: React.FC<ReportFormProps> = ({ config, onChange, onDown
               * 目前设定为 {config.exportDpi || 300} DPI（导出画面将自动放大 {((config.exportDpi || 300) / 100).toFixed(1)} 倍输出，获得无可挑剔的清晰度）。
             </p>
           </div>
-
         </div>
-
-        {/* 底部重置与生成 */}
-        <div className="pt-4 flex items-center space-x-3">
-          <button
-            type="button"
-            onClick={resetForm}
-            className="flex items-center justify-center space-x-2 px-3 py-2.5 border border-[#E0E0DE] hover:bg-stone-50 text-stone-600 rounded text-xs tracking-wider transition-colors active:scale-95"
-            title="清空重置表单"
-          >
-            <RotateCcw className="w-4 h-4" />
-            <span>重置</span>
-          </button>
-          
-          <button
-            type="button"
-            disabled={isDownloading}
-            onClick={onDownload}
-            className={`flex-grow flex items-center justify-center space-x-2.5 px-6 py-2.5 rounded text-xs font-semibold tracking-widest uppercase transition-all ${
-              !isDownloading
-                ? 'bg-[#2E2E2E] hover:bg-black text-white cursor-pointer active:scale-[0.98]'
-                : 'bg-stone-200 text-stone-400 cursor-not-allowed'
-            }`}
-          >
-            <span>{isDownloading ? '卡片高清晰画质刻画中...' : '一键导出 (PNG)'}</span>
-          </button>
-        </div>
-
       </form>
+      </div>
+      <div className="sticky bottom-0 z-10 p-6 bg-[#FCFCFB] border-t border-[#ECECEC] flex items-center space-x-3 shadow-[0_-4px_20px_rgba(0,0,0,0.03)]">
+        <button
+          type="button"
+          onClick={resetForm}
+          className="flex items-center justify-center space-x-2 px-4 py-3 border border-[#E0E0DE] hover:bg-stone-50 text-stone-600 rounded text-sm tracking-wider transition-colors active:scale-95 bg-white shadow-sm hover:shadow"
+          title="清空重置表单"
+        >
+          <RotateCcw className="w-4 h-4" />
+          <span>重置</span>
+        </button>
+        
+        <button
+          type="button"
+          disabled={isDownloading}
+          onClick={onDownload}
+          className={`flex-grow flex items-center justify-center space-x-2.5 px-6 py-3 rounded text-sm font-semibold tracking-widest uppercase transition-all shadow-sm ${
+            !isDownloading
+              ? 'bg-[#2E2E2E] hover:bg-black text-white cursor-pointer active:scale-[0.98] hover:shadow-md'
+              : 'bg-stone-200 text-stone-400 cursor-not-allowed'
+          }`}
+        >
+          <span>{isDownloading ? '卡片高清晰画质刻画中...' : '一键导出 (PNG)'}</span>
+        </button>
+      </div>
     </div>
   );
 };
