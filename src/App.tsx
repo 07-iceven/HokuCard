@@ -120,15 +120,7 @@ export default function App() {
         {/* 右侧展示板块：灰色背景，中间完美居中卡片 (62% lg) */}
         <div className="w-full lg:flex-grow bg-[#EFEFED] p-4 sm:p-8 flex items-center justify-center lg:overflow-hidden relative min-h-[400px] lg:min-h-0 shrink-0">
           
-          {/* 背景日系小浮水印 */}
-          <div className="absolute top-6 left-8 pointer-events-none hidden md:block">
-            <span className="text-[10px] tracking-[0.25em] text-stone-400 uppercase font-mono block">
-              PREVIEW STAGE
-            </span>
-            <span className="text-[9px] text-stone-300 font-serif block mt-1">
-              实时画面
-            </span>
-          </div>
+
 
           <div className="w-full flex flex-col items-center py-4">
             {/* 卡片容器：在此增加稍微精致的大阴影将它与预览舞台区隔。但卡片内部依然保持扁平 */}
